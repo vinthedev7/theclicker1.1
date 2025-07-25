@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+   <meta charset="UTF-8" /> 
+  <div class="topbar">
+  <h1 class="topbar-title">The Button Clicker</h1>
+</div>
+      <div id="topBar">
+  
+</div>
+  <body>
+    
+<link rel="stylesheet" href="styles.css">
+         <h1>The Button Clicker 1.2</h1> 
+    <p> Welcome to the Button Clicker 1.2!!! Press Click me to click the button!</p>
+  <link rel="stylesheet" href="styles.css">
+    </body>
+      
+
+
+</head>
+</html>
+
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnKwtHj19x0LSd0IRMyLtdoCBehIdfnTE",
+    authDomain: "v-ommunity-s8zcng.firebaseapp.com",
+    projectId: "v-ommunity-s8zcng",
+    storageBucket: "v-ommunity-s8zcng.appspot.com",
+    messagingSenderId: "636616355821",
+    appId: "1:636616355821:web:8e9c84b8dc25f5e47381e4"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+<!-- Sign In/Sign Up Form -->
+<div id="authSection">
+  <h2>Sign In</h2>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="signIn()">Sign In</button>
+  <button onclick="signUp()">Sign Up</button>
+  <p id="authMessage"></p>
+</div>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter with High Score</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      .cursive {
+        font-family: 'Dancing Script', cursive;
+        color: #000000;
+        font-size: 48px;
+      }
+
+      #count {
+        color: #00cdff;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      #highScore {
+        color: green;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        background-color: #2196f3;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0b7dda;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 class="cursive">da counter</h1>
+    <h2>press the button</h2>
+
+    <p>You clicked <span id="count">0</span> times.</p>
+    <p>High Score: <span id="highScore">0</span></p>
+
+    <button onclick="increaseCount()">Click me!</button>
+    <button onclick="resetCount()">Reset</button>
+      
+     
+      
+    <script>
+      let count = 0;
+      let highScore = 0;
+
+      function increaseCount() {
+        count++;
+        document.getElementById("count").innerText = count;
+
+          function decreaseCount() {
+        count--; // if you want it to go negative
+        updateDisplay();
+      }
+
+
+     
+        if (count > highScore) {
+          highScore = count;
+          document.getElementById("highScore").innerText = highScore;
+        }
+      }
+
+      function resetCount() {
+        count = 0;
+        document.getElementById("count").innerText = count;
+        // Don't reset high score!
+      }
+    </script>
+
+  </body>
+</html>
+
+<canvas id="confetti" style="position: fixed; top: 0; left: 0; pointer-events: none;"></canvas>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnKwtHj19x0LSd0IRMyLtdoCBehIdfnTE",
+    authDomain: "v-ommunity-s8zcng.firebaseapp.com",
+    projectId: "v-ommunity-s8zcng",
+    storageBucket: "Yv-ommunity-s8zcng.appspot.com",
+    messagingSenderId: "636616355821",
+    appId: "1:636616355821:web:8e9c84b8dc25f5e47381e4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Sign Up
+  window.signUp = function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        document.getElementById("authMessage").innerText = "✅ Signed up!";
+      })
+      .catch(error => {
+        document.getElementById("authMessage").innerText = "❌ " + error.message;
+      });
+  };
+
+  // Sign In
+  window.signIn = function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        document.getElementById("authMessage").innerText = "✅ Signed in!";
+      })
+      .catch(error => {
+        document.getElementById("authMessage").innerText = "❌ " + error.message;
+      });
+  };
+
+  // Optional: Auto Detect if Logged In
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      document.getElementById("authMessage").innerText = `👋 Hello ${user.email}`;
+    }
+  });
+</script>
+<button onclick="signOutUser()">Log Out</button>
